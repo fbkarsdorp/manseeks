@@ -1,0 +1,10 @@
+.search-header {
+  min-height: 70px;
+  padding: 8px 24px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  font-family: "Roboto Mono", monospace;
+}
