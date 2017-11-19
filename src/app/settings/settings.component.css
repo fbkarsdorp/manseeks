@@ -1,0 +1,26 @@
+.slider-margin {
+  margin: 10px;
+}
+
+.settings-card {
+  margin: 0 0 10px; 
+}
+
+.slider-info {
+  margin: 15px 10px 15px;
+}
+
+mat-slider {
+    width: 75%;
+    padding: 0px;
+    margin: 0px 10px;
+}
+
+.mat-slider-thumb-label-text {
+  opacity: 1 !important;
+}
+
+.field-margin {
+  margin: 10px;
+  width: 100px;
+}

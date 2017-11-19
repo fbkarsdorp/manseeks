@@ -1,0 +1,22 @@
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.mat-chip.mat-chip-selected.mat-primary {
+  margin: 0px 0px;
+  padding: 4px 4px;
+  font-size: 11px;
+}
+
+.mat-chip.mat-chip-selected.mat-primary:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+/* .fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%  !important;
+} */

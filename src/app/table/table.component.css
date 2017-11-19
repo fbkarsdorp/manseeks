@@ -1,0 +1,37 @@
+/* Structure */
+
+.table-div {
+  height: calc(100% - 140px);
+  display: flex;
+  flex-direction: column;
+  padding: 8px 24px 8px;
+  /* margin: 8px 0px;   */
+}
+  
+mat-table {
+  flex: 1 1 auto;
+  min-height: 100px;
+  overflow: scroll;
+  width: 100%;
+}
+
+mat-paginator {
+  flex: 0 1 auto;
+  width: 100%;
+}
+
+.mat-column-filename {
+  flex: 0 0 20%;
+}
+
+.mat-column-filename.mat-cell {
+  font-size: 9px;
+  opacity: 0.8;
+
+}
+
+.match {
+    font-weight: bold;
+    color: #673ab7;
+}
+

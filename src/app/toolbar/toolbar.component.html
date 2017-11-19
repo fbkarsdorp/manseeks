@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <span>{{title}}</span>
+  <span class="fill-remaining-space"></span>
+
+  <mat-chip-list>
+    <mat-chip color="primary" *ngFor="let path of basepath" 
+              removable="true" selectable="false" color="primary" selected="true" (remove)="remove(path)">
+      {{path}}
+      <mat-icon matChipRemove *ngIf="removable">clear</mat-icon>
+    </mat-chip>
+
+    <button mat-icon-button matTooltip="Select a corpus directory" color="accent" (click)="getCorpusPath()">
+      <mat-icon aria-label="Select a Corpus to query.">library_add</mat-icon>
+    </button>
+
+    <button mat-icon-button matTooltip="Export to CSV" color="accent" (click)="openWriteDialog()">
+      <mat-icon aria-label="export-table">file_download</mat-icon>
+    </button>
+
+    <button mat-icon-button matTooltip="Show settings" color="accent" (click)="sidenav.toggle()">
+      <mat-icon aria-label="ripgrep-settings">dashboard</mat-icon>
+    </button>
+  </mat-chip-list>
+
+</mat-toolbar>
+

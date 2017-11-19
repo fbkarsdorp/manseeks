@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+/* @import '~material-design-icons/css/material-design-icons.css'; */
+
+html, body, mat-sidenav-container, .app-content {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: #fff;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}

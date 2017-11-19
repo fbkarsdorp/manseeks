@@ -1,0 +1,29 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>Settings</mat-toolbar-row>
+
+</mat-toolbar>
+<mat-card class="settings-card">
+  <mat-card-title>Search Settings</mat-card-title>
+  <mat-card-content>
+    <mat-slide-toggle name="usecase" [checked]="rgOptions.usecase" [(ngModel)]="rgOptions.usecase" class="slider-margin" (change)="updateRGOptions()">Match case</mat-slide-toggle>
+    <mat-slide-toggle name="word" [checked]="rgOptions.word" [(ngModel)]="rgOptions.word" class="slider-margin" (change)="updateRGOptions()">Match whole words</mat-slide-toggle>
+    <mat-slide-toggle name="regex" [checked]="rgOptions.regex" [(ngModel)]="rgOptions.regex" class="slider-margin" (change)="updateRGOptions()">Use Regular Expression</mat-slide-toggle>
+    <div class="slider-info">Number of context characters:</div>
+    <mat-slider [(ngModel)]="rgOptions.context" [max]="max" [min]="min" [step]="step" [thumb-label]="thumbLabel" [value]="rgOptions.context" (change)="updateRGOptions()">
+    </mat-slider>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-title>Export Settings</mat-card-title>
+  <mat-card-content>
+    <mat-slide-toggle name="showLabels" [(ngModel)]="export.showLabels" class="slider-margin" (change)="changeExport()">Use header row</mat-slide-toggle>
+    <mat-slide-toggle name="showTitle" [checked]="export.showTitle" class="slider-margin" (change)="changeExport()">Show Title</mat-slide-toggle>
+    <mat-form-field class="field-margin" (change)="changeExport()">
+      <input matInput placeholder="Field separator" value="export.fieldSeparator" [(ngModel)]="export.fieldSeparator">
+    </mat-form-field>
+    <mat-form-field class="field-margin" (change)="changeExport()">
+      <input matInput placeholder="Quote strings" value="export.quoteStrings" [(ngModel)]="export.quoteStrings">
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>

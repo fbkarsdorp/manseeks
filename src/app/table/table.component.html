@@ -1,0 +1,23 @@
+<div class="table-div">
+
+  <mat-table #table [dataSource]="dataSource" matSort class="mat-elevation-z2">
+    
+    <ng-container matColumnDef="filename">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let linematch"> {{linematch.filename}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="match">
+      <mat-header-cell *matHeaderCellDef>match</mat-header-cell>
+      <mat-cell *matCellDef="let linematch"> {{linematch.lhs}}<span class="match">{{linematch.match}}</span>{{linematch.rhs}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns" style="display: none;"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+  
+  <mat-paginator class="mat-elevation-z2" #paginator [length]="dataSource.data.length" 
+                 [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 100]">
+  </mat-paginator>
+</div>

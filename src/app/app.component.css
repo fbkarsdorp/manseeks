@@ -1,0 +1,16 @@
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-sidenav {
+    padding: 0px;
+    width: 300px;
+}
+
+.main-content {
+  /* position: absolute; */
+  height: calc(100% - 64px);
+}
