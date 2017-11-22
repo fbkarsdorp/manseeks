@@ -16,7 +16,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ParametersService } from './parameters.service';
 import { BreakpointObserver } from '@angular/cdk/layout/typings/breakpoints-observer';
 import { MatchesService } from './matches.service';
-import { ResultsComponent } from './results/results.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ExportCsvComponent } from './export-csv/export-csv.component';
 
@@ -28,7 +27,6 @@ import { ExportCsvComponent } from './export-csv/export-csv.component';
     ToolbarComponent,
     ProgressbarComponent,
     SearchbarComponent,
-    ResultsComponent,
     SettingsComponent,
     ExportCsvComponent,
   ],
