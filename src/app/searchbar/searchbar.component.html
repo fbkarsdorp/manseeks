@@ -2,6 +2,9 @@
   <form (submit)="submitQuery(searchquery.value)">
   <mat-form-field>
     <input matInput placeholder="Search..." #searchquery>
+    <button mat-icon-button matSuffix>
+      <mat-icon class="input-icon" color="primary" (click)="submitQuery(searchquery.value)">search</mat-icon>
+    </button>
   </mat-form-field>
   </form>
 </div>

@@ -8,9 +8,40 @@
 mat-sidenav {
     padding: 0px;
     width: 300px;
+    background-color: rgba(209,196,233,.3);
 }
 
-.main-content {
-  /* position: absolute; */
-  height: calc(100% - 64px);
+.toolside {
+  width: 50px;
+  min-width: 50px;
+  padding: 0px;
+  border-right: thin solid rgba(0, 0, 0, 0.12);
+}
+
+.settingside {
+  border-left: thin solid rgba(0, 0, 0, 0.12)
+}
+
+mat-tab-group {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/deep/ .mat-tab-body-wrapper {
+  height: 100% !important;
+}
+
+.close-tab-fab.mat-mini-fab {
+  position: absolute;
+  right: 20px;
+  bottom: 60px;
+}
+
+.tab-label {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
 }

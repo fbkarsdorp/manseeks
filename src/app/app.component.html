@@ -1,12 +1,30 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<mat-toolbar color="primary" style="height: 22px;"></mat-toolbar>
 <mat-sidenav-container>
-    <mat-sidenav #sidenav position='start' mode="over">
+    <mat-sidenav class="toolside" opened="true" #tools position='start' mode="side">
+        <app-toolbar [tabIndex]="tabIndex" [sidenav]="sidenav"></app-toolbar>
+    </mat-sidenav>
+    <mat-sidenav class="settingside" #sidenav position='end' mode="side">
         <app-settings></app-settings>
     </mat-sidenav>
     <div class="app-content">
-        <app-toolbar [title]="title" [sidenav]="sidenav"></app-toolbar>
-            <app-searchbar></app-searchbar>
-            <app-table></app-table>
-        <app-progressbar [active]="activeSearch"></app-progressbar>
+        <mat-tab-group #tabGroup [(selectedIndex)]="tabIndex" (selectedTabChange)="tabChanged($event)">
+            <mat-tab label="concordance">
+                <app-searchbar></app-searchbar>
+                <app-table (tabEvent)="tabMessage($event)"></app-table>
+            </mat-tab>
+            <mat-tab label="word list">
+                <app-wordlist></app-wordlist>
+            </mat-tab>
+            <mat-tab *ngFor="let tab of tabs">
+                <ng-template mat-tab-label>{{tab.label}}</ng-template>
+                <app-docpage [content]="tab.content" [linematch]="tab.number"></app-docpage>
+                <button mat-mini-fab class="close-tab-fab" (click)="removeTab(tab)">
+                    <mat-icon>clear</mat-icon>
+                </button>
+            </mat-tab>
+        </mat-tab-group>
     </div>            
+    <app-progressbar [active]="activeSearch"></app-progressbar>
 </mat-sidenav-container>
+<app-statusbar></app-statusbar>

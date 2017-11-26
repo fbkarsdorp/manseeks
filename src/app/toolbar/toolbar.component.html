@@ -1,26 +1,23 @@
-<mat-toolbar color="primary">
-  <span>{{title}}</span>
-  <span class="fill-remaining-space"></span>
-
-  <mat-chip-list>
+  <div class="toollist">
+  <!-- <mat-chip-list>
     <mat-chip color="primary" *ngFor="let path of basepath" 
               removable="true" selectable="false" color="primary" selected="true" (remove)="remove(path)">
       {{path}}
       <mat-icon matChipRemove *ngIf="removable">clear</mat-icon>
     </mat-chip>
+    </mat-chip-list>
+     -->
 
-    <button mat-icon-button matTooltip="Select a corpus directory" color="accent" (click)="getCorpusPath()">
+    <button mat-icon-button matTooltipPosition="right" matTooltip="Select a corpus directory" color="primary" (click)="getCorpusPath()">
       <mat-icon aria-label="Select a Corpus to query.">library_add</mat-icon>
     </button>
 
-    <button mat-icon-button matTooltip="Export to CSV" color="accent" (click)="openWriteDialog()">
+    <button mat-icon-button matTooltipPosition="right" matTooltip="Export to CSV" color="primary" (click)="openWriteDialog()">
       <mat-icon aria-label="export-table">file_download</mat-icon>
     </button>
 
-    <button mat-icon-button matTooltip="Show settings" color="accent" (click)="sidenav.toggle()">
+    <button mat-icon-button matTooltipPosition="right" matTooltip="Show settings" color="primary" (click)="sidenav.toggle()">
       <mat-icon aria-label="ripgrep-settings">dashboard</mat-icon>
     </button>
-  </mat-chip-list>
-
-</mat-toolbar>
-
+  <!-- </mat-chip-list> -->
+  </div>

@@ -61,7 +61,6 @@ export class RipGrepEngine {
 
   private childProcess: typeof childProcess;
   private remainder: string;
-  public isDone = false;
   private filepath: string;
   private stringDecoder: NodeStringDecoder;
   private args = ['--hidden', '--heading', '--line-number', '--color', 'ansi', '--colors',
@@ -86,17 +85,12 @@ export class RipGrepEngine {
 
   rg(service): void {
     console.log(this.args);
-    let cwd;
-    if (platform === 'win32') {
-      cwd = 'c:/';
-    } else {
-      cwd = '/';
-    }
+    const cwd = platform === 'win32' ? 'c:/' : '/';
     const process = this.childProcess.spawn(
       rgPath, this.args.concat([this.query]).concat(this.corpusPath), { cwd });
     process.once('exit', () => {
       console.log('RG = DONE');
-      console.log(this.handleData(this.stringDecoder.end()));
+      this.handleData(this.stringDecoder.end());
       service.updateMatches(this.matchList);
       service.stop();
     });
@@ -108,7 +102,6 @@ export class RipGrepEngine {
 
   handleData(dataStr: string) {
     const data = this.remainder ? this.remainder + dataStr : dataStr;
-    const hadRemainder = this.remainder ? true : false;
     const lines: string[] = data.split(/\r\n|\n/);
     this.remainder = lines[lines.length - 1] ? lines.pop() : null;
     for (let line = 0; line < lines.length; line++) {
@@ -136,15 +129,18 @@ export class RipGrepEngine {
     let matchTextStartPos = -1;
     let matchTextStartRealIdx = -1;
     let textRealIdx = 0;
-    const lineMatch = new LineMatch(origin, lineNum);
+    const realTextParts: string[] = [];
+    const matchIndices: number[][] = [];
+
     for (let i = 0; i < text.length - (RipGrepEngine.MATCH_END_MARKER.length - 1);) {
       if (text.substr(i, RipGrepEngine.MATCH_START_MARKER.length) === RipGrepEngine.MATCH_START_MARKER) {
-        lineMatch.lhs = text.slice(lastMatchEndPos, i).slice(-this.contextWidth);
+        realTextParts.push(text.slice(lastMatchEndPos, i)); // .slice(-this.contextWidth);
         i += RipGrepEngine.MATCH_START_MARKER.length;
         matchTextStartPos = i;
         matchTextStartRealIdx = textRealIdx;
       } else if ((text.substr(i, RipGrepEngine.MATCH_END_MARKER.length) === RipGrepEngine.MATCH_END_MARKER)) {
-        lineMatch.match = text.slice(matchTextStartPos, i);
+        realTextParts.push(text.slice(matchTextStartPos, i));
+        matchIndices.push([matchTextStartRealIdx, textRealIdx - matchTextStartRealIdx]);
         matchTextStartPos = -1;
         matchTextStartRealIdx = -1;
         i += RipGrepEngine.MATCH_END_MARKER.length;
@@ -154,12 +150,16 @@ export class RipGrepEngine {
         textRealIdx++;
       }
     }
-    lineMatch.rhs = text.slice(lastMatchEndPos).slice(0, this.contextWidth);
-    this.matchList.push(lineMatch);
-  }
-
-  wrapLine(line: string) {
-
+    realTextParts.push(text.slice(lastMatchEndPos));
+    const preview = realTextParts.join('');
+    for (let i = 0; i < matchIndices.length; i++) {
+      const offset = matchIndices[i][0];
+      const length = matchIndices[i][1];
+      const match: string = preview.slice(offset, offset + length);
+      const lhs: string = preview.slice(offset - this.contextWidth, offset);
+      const rhs: string = preview.slice(offset + length, offset + length + this.contextWidth);
+      this.matchList.push(new LineMatch(origin, lineNum, lhs, match, rhs));
+    }
   }
 }
 
@@ -171,12 +171,15 @@ export class LineMatch {
   match: string;
   rhs: string;
 
-  constructor(origin: string, lineNum: number) {
+  constructor(origin: string, lineNum: number, lhs: string, match: string, rhs: string) {
     this.origin = origin;
     if (origin === undefined) {
         console.log(origin);
     }
     this.filename = origin.split('/').slice(-1)[0];
     this.lineNumber = lineNum;
+    this.lhs = lhs;
+    this.match = match;
+    this.rhs = rhs;
   }
 }

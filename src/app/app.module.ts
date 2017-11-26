@@ -4,7 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule, MatPaginatorModule, MatFormFieldModule, MatInputModule,
          MatToolbarModule, MatProgressBarModule, MatButtonModule, MatSnackBarModule,
          MatSnackBar, MatChipsModule, MatIconModule, MatSidenavModule,
-         MatSlideToggleModule, MatCardModule, MatSliderModule, MatTooltipModule } from '@angular/material';
+         MatSlideToggleModule, MatCardModule, MatSliderModule, MatTooltipModule,
+         MatTabsModule, MatSelectModule, MatSortModule } from '@angular/material';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppComponent } from './app.component';
@@ -18,6 +19,9 @@ import { BreakpointObserver } from '@angular/cdk/layout/typings/breakpoints-obse
 import { MatchesService } from './matches.service';
 import { SettingsComponent } from './settings/settings.component';
 import { ExportCsvComponent } from './export-csv/export-csv.component';
+import { StatusbarComponent } from './statusbar/statusbar.component';
+import { WordlistComponent } from './wordlist/wordlist.component';
+import { DocpageComponent } from './docpage/docpage.component';
 
 
 @NgModule({
@@ -29,6 +33,9 @@ import { ExportCsvComponent } from './export-csv/export-csv.component';
     SearchbarComponent,
     SettingsComponent,
     ExportCsvComponent,
+    StatusbarComponent,
+    WordlistComponent,
+    DocpageComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +57,9 @@ import { ExportCsvComponent } from './export-csv/export-csv.component';
     MatCardModule,
     MatSliderModule,
     MatTooltipModule,
+    MatTabsModule,
+    MatSelectModule,
+    MatSortModule
   ],
   providers: [ParametersService, MatSnackBar, MatchesService],
   bootstrap: [AppComponent]

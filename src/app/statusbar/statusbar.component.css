@@ -1,0 +1,37 @@
+.bottom-bar {
+    position: absolute;
+    bottom: 0px;
+    z-index: 1;
+}
+
+.collection-list {
+    width: 100%;
+    display: block;
+}
+
+.mat-chip {
+    height: 15px;
+    margin: 0;
+}
+
+.mat-chip-icon, .mat-chip {
+    font-size: 10px !important;
+}
+
+.mat-chip.mat-chip-selected.mat-primary {
+  margin: 0px 0px;
+  padding: 4px 4px;
+}
+
+.mat-chip, .mat-chip-selected {
+    margin: 0 !important;
+}
+
+.mat-chip.mat-chip-selected.mat-primary:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.mtoolbar {
+  height: 22px !important;
+}

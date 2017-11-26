@@ -2,15 +2,13 @@
   flex: 1 1 auto;
 }
 
-.mat-chip.mat-chip-selected.mat-primary {
-  margin: 0px 0px;
+.toollist {
   padding: 4px 4px;
-  font-size: 11px;
-}
-
-.mat-chip.mat-chip-selected.mat-primary:focus {
-  box-shadow: none;
-  outline: none;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 /* .fixed-header {

@@ -1,0 +1,31 @@
+<div class="table-div">
+
+  <div class="example-header">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter...">
+        <button mat-icon-button matSuffix>
+          <mat-icon color="primary" class="input-icon" (click)="compileWordList()">storage</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+  <mat-table #table [dataSource]="wordList" class="mat-elevation-z2" matSort>
+
+    <ng-container matColumnDef="word">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>word</mat-header-cell>
+      <mat-cell *matCellDef="let item">{{item.word}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="frequency">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>frequency</mat-header-cell>
+      <mat-cell *matCellDef="let item">{{item.frequency}}</mat-cell>
+    </ng-container>    
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+  <mat-paginator class="mat-elevation-z2" #paginator [length]="wordList.data.length" [pageIndex]="0" [pageSize]="500" [pageSizeOptions]="[100, 500, 1000]">
+  </mat-paginator>
+</div>

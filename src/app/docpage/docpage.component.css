@@ -1,0 +1,15 @@
+.docpage {
+    height: calc(100% - 44px);
+    padding: 24px 54px;
+    overflow: scroll;
+
+}
+
+.docp {
+    margin: 2px 0px;
+}
+
+.doclinematch {
+    font-weight: bold;
+    color: #673ab7;
+}

@@ -4,13 +4,20 @@
     
     <ng-container matColumnDef="filename">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let linematch"> {{linematch.filename}} </mat-cell>
+      <mat-cell *matCellDef="let linematch">
+        <a style="cursor:pointer;" (click)="openfile(linematch.origin, linematch.filename, linematch.lineNumber)">{{linematch.filename}}</a>
+      </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="match">
       <mat-header-cell *matHeaderCellDef>match</mat-header-cell>
-      <mat-cell *matCellDef="let linematch"> {{linematch.lhs}}<span class="match">{{linematch.match}}</span>{{linematch.rhs}}</mat-cell>
+      <mat-cell *matCellDef="let linematch" (click)="openfile()"> {{linematch.lhs}}<span class="match">{{linematch.match}}</span>{{linematch.rhs}}</mat-cell>
     </ng-container>
+
+    <!-- <ng-container matColumnDef="visitfile">
+      <mat-header-cell *matHeaderCellDef>match</mat-header-cell>
+      <mat-cell *matCellDef="let linematch" (click)="openfile(linematch.origin, linematch.filename, linematch.lineNumber)"><button mat-icon-button><mat-icon>open_in_new</mat-icon></button></mat-cell>
+    </ng-container> -->
 
     <mat-header-row *matHeaderRowDef="displayedColumns" style="display: none;"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

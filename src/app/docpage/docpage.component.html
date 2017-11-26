@@ -1,0 +1,7 @@
+<div class="docpage">
+  <p class="docp" *ngFor="let line of content; let i = index">
+    <span [ngClass]="{doclinematch: i === linematch, nomatch: i > 0}">
+      {{line}}
+    </span>
+  </p>
+</div>

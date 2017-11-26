@@ -1,0 +1,9 @@
+<mat-toolbar class="bottom-bar" color="primary" style="height: 22px;">
+    <mat-chip-list class="collection-list">
+        <mat-chip color="primary" *ngFor="let path of basepaths" 
+                  removable="true" selectable="false" color="primary" selected="true" (remove)="remove(path)">
+          {{path}}
+          <mat-icon class="mat-chip-icon" matChipRemove *ngIf="removable">clear</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+</mat-toolbar>

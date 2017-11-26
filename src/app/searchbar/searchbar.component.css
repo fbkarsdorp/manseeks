@@ -8,3 +8,7 @@
   width: 100%;
   font-family: "Roboto Mono", monospace;
 }
+
+.input-icon {
+  font-size: 20px !important;
+}

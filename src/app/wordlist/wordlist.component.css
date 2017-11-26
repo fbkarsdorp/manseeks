@@ -1,7 +1,5 @@
-/* Structure */
-
 .table-div {
-  height: calc(100% - 130px);
+  height: calc(100% - 60px);
   display: flex;
   flex-direction: column;
   padding: 8px 24px 8px;
@@ -28,12 +26,21 @@ mat-paginator {
   opacity: 0.8;
 }
 
-.match {
-    font-weight: bold;
-    color: #673ab7;
+.search-header {
+  min-height: 70px;
+  padding: 8px 24px 0;
 }
 
-.with-icon {
-    display: flex;
-    align-items: center;
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  font-family: "Roboto Mono", monospace;
+}
+
+.mat-header-cell.mat-sort-header-sorted {
+  color: black;
+}
+
+.input-icon {
+  font-size: 20px !important;
 }

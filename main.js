@@ -36,6 +36,7 @@ app.on('ready', function () {
     // and load the index.html of the app.
     // console.log('file://' + path.join(__dirname, '/src/index.html'));
     mainWindow.loadURL('file://' + path.join(__dirname, '/dist/index.html'));
+    // mainWindow.loadURL('http://localhost:4200')
     
 
     // Open the DevTools.
