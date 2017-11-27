@@ -21,9 +21,12 @@ export class MatchesService {
   }
 
   updateWordList(counts: {}) {
-    this.wordlist.next(Object.keys(counts).map(word => {
-      return new Word(word, counts[word]);
-    }));
+    this.wordlist.next(Object.keys(counts)
+      .map(word => {
+        return new Word(word, counts[word]);
+      })
+      .sort((a, b) => b.frequency - a.frequency)
+    );
     this.stop();
   }
 
