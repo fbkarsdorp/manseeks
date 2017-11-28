@@ -14,7 +14,7 @@
     "electron-build": "ng build --prod && electron .",
     "package-windows": "electron-packager . manseeks-app --overwrite --asar.unpack='**/app/node_modules/rg-manseeks/bin/*/*' --platform=win32 --arch=ia32 --icon=src/assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"ManSeeks App\"",
     "package-mac": "electron-packager . --overwrite --platform=darwin --asar.unpack='**/app/node_modules/rg-manseeks/bin/*/*' --arch=x64 --icon=src/assets/icons/mac/manseeks-icon.png.icns --prune=true --out=release-builds",
-    "package-linux": "electron-packager . manseeks --overwrite --asar.unpack='**/app/node_modules/rg-manseeks/bin/*/*' platform=linux --arch=x64 --icon=src/assets/icons/png/512x512.png --prune=true --out=release_builds"
+    "package-linux": "electron-packager . manseeks --overwrite --asar.unpack='**/app/node_modules/rg-manseeks/bin/*/*' --platform=linux --arch=x64 --icon=src/assets/icons/png/512x512.png --prune=true --out=release-builds"
   },
   "private": true,
   "dependencies": {
