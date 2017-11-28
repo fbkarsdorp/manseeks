@@ -3,10 +3,11 @@ import { ParametersService, RGOptions } from '../parameters.service';
 import { MatSnackBar, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { StringDecoder, NodeStringDecoder } from 'string_decoder';
 import { MatchesService, Word } from '../matches.service';
-import { rgPath } from '../ripgrep';
 
 const childProcess = (<any>window).require('child_process');
 const { platform } = (<any>window).require('process');
+let { rgPath } = (<any>window).require('rg-manseeks');
+rgPath = rgPath.replace('app.asar', 'app.asar.unpacked');
 
 
 @Component({
