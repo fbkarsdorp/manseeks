@@ -3,10 +3,11 @@ import { ParametersService, RGOptions } from '../parameters.service';
 import { MatSnackBar } from '@angular/material';
 import { MatchesService } from '../matches.service';
 import { StringDecoder, NodeStringDecoder } from 'string_decoder';
+import { rgPath } from '../ripgrep';
 
 const childProcess = (<any>window).require('child_process');
-const { rgPath } = (<any>window).require('vscode-ripgrep');
 const { platform } = (<any>window).require('process');
+
 
 @Component({
   selector: 'app-searchbar',
@@ -76,11 +77,17 @@ export class RipGrepEngine {
     }
     this.corpusPath = corpusPath;
     this.stringDecoder = new StringDecoder('utf-8');
-    const { regex, usecase, word, context } = options;
+    const { regex, usecase, word, context, includeGlob, excludeGlob } = options;
     if (!regex) { this.args.push('--fixed-strings'); }
     if (!usecase) { this.args.push('--ignore-case'); }
     if (word) { this.args.push('--word-regexp'); }
     this.contextWidth = context;
+    if (includeGlob.length > 1) {
+      this.args.push('--glob'); this.args.push(includeGlob);
+    }
+    if (excludeGlob.length > 1) {
+      this.args.push('--glob'); this.args.push('!' + excludeGlob);
+    }
   }
 
   rg(service): void {

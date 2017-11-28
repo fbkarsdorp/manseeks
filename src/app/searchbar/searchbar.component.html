@@ -1,6 +1,6 @@
 <div class="search-header">
   <form (submit)="submitQuery(searchquery.value)">
-  <mat-form-field>
+  <mat-form-field class="search-filter-form">
     <input matInput placeholder="Search..." #searchquery>
     <button mat-icon-button matSuffix>
       <mat-icon class="input-icon" color="primary" (click)="submitQuery(searchquery.value)">search</mat-icon>

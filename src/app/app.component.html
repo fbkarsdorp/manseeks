@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<mat-toolbar color="primary" style="height: 22px;"></mat-toolbar>
+<mat-toolbar color="primary" style="-webkit-app-region: drag; height: 22px;"></mat-toolbar>
 <mat-sidenav-container>
     <mat-sidenav class="toolside" opened="true" #tools position='start' mode="side">
         <app-toolbar [tabIndex]="tabIndex" [sidenav]="sidenav"></app-toolbar>
@@ -25,6 +25,6 @@
             </mat-tab>
         </mat-tab-group>
     </div>            
-    <app-progressbar [active]="activeSearch"></app-progressbar>
+    <app-progressbar></app-progressbar>
 </mat-sidenav-container>
 <app-statusbar></app-statusbar>

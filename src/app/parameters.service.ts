@@ -18,6 +18,7 @@ export class ParametersService {
   changeQuery(query: string) {
     this.query.next(query);
   }
+
   changeCorpusPath(corpusPath: string) {
     const paths = this.corpusPath.value;
     paths.push(corpusPath);
@@ -50,6 +51,8 @@ export class RGOptions {
   word = false;
   regex= true;
   context = 100;
+  includeGlob = '';
+  excludeGlob = '';
 }
 
 export class ExportOptions {

@@ -1,7 +1,7 @@
 <div class="table-div">
 
   <div class="example-header">
-      <mat-form-field>
+      <mat-form-field class="search-filter-form">
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter...">
         <button mat-icon-button matSuffix>
           <mat-icon color="primary" class="input-icon" (click)="compileWordList()">storage</mat-icon>
@@ -9,15 +9,15 @@
       </mat-form-field>
     </div>
 
-  <mat-table #table [dataSource]="wordList" class="mat-elevation-z2" matSort>
+  <mat-table #table [dataSource]="wordList" class="mat-elevation-z2">
 
     <ng-container matColumnDef="word">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>word</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>word</mat-header-cell>
       <mat-cell *matCellDef="let item">{{item.word}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="frequency">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>frequency</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>frequency</mat-header-cell>
       <mat-cell *matCellDef="let item">{{item.frequency}}</mat-cell>
     </ng-container>    
 

@@ -31,7 +31,7 @@ mat-paginator {
   padding: 8px 24px 0;
 }
 
-.mat-form-field {
+.search-filter-form {
   font-size: 14px;
   width: 100%;
   font-family: "Roboto Mono", monospace;

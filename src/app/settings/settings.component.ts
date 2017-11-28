@@ -14,7 +14,7 @@ export class SettingsComponent implements OnInit {
   thumbLabel = true;
   step = 1;
 
-  rgOptions = {usecase: false, word: false, regex: true, context: 100};
+  rgOptions = { usecase: false, word: false, regex: true, context: 100, includeGlob: '', excludeGlob: ''};
   export = {
     fieldSeparator: ',',
     quoteStrings: '"',

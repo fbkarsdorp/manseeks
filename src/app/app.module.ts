@@ -5,7 +5,7 @@ import { MatTableModule, MatPaginatorModule, MatFormFieldModule, MatInputModule,
          MatToolbarModule, MatProgressBarModule, MatButtonModule, MatSnackBarModule,
          MatSnackBar, MatChipsModule, MatIconModule, MatSidenavModule,
          MatSlideToggleModule, MatCardModule, MatSliderModule, MatTooltipModule,
-         MatTabsModule, MatSelectModule, MatSortModule } from '@angular/material';
+         MatTabsModule, MatSelectModule } from '@angular/material';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppComponent } from './app.component';
@@ -59,7 +59,6 @@ import { DocpageComponent } from './docpage/docpage.component';
     MatTooltipModule,
     MatTabsModule,
     MatSelectModule,
-    MatSortModule
   ],
   providers: [ParametersService, MatSnackBar, MatchesService],
   bootstrap: [AppComponent]

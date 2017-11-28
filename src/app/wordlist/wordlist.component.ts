@@ -1,12 +1,13 @@
 import { Component, AfterViewInit, ViewChild, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
-import { ParametersService } from '../parameters.service';
+import { ParametersService, RGOptions } from '../parameters.service';
 import { MatSnackBar, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { StringDecoder, NodeStringDecoder } from 'string_decoder';
 import { MatchesService, Word } from '../matches.service';
+import { rgPath } from '../ripgrep';
 
 const childProcess = (<any>window).require('child_process');
-const { rgPath } = (<any>window).require('vscode-ripgrep');
 const { platform } = (<any>window).require('process');
+
 
 @Component({
   selector: 'app-wordlist',
@@ -16,12 +17,12 @@ const { platform } = (<any>window).require('process');
 })
 export class WordlistComponent implements AfterViewInit {
   collection: string[];
+  options: RGOptions;
   displayedColumns = ['word', 'frequency'];
   wordList = new MatTableDataSource<Word>([]);
   wl: WordFreqDist;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
 
   constructor(private parameters: ParametersService,
               public snackbar: MatSnackBar,
@@ -42,7 +43,7 @@ export class WordlistComponent implements AfterViewInit {
     if (this.collection === undefined || this.collection.length === 0) {
       this.openSnackBar('First select a corpus');
     } else {
-      this.wl = new WordFreqDist(this.collection);
+      this.wl = new WordFreqDist(this.collection, this.options);
       this.matches.run();
       this.wl.compileList(this.matches);
     }
@@ -50,9 +51,9 @@ export class WordlistComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.wordList.paginator = this.paginator;
-    this.wordList.sort = this.sort;
 
     this.parameters.currentCorpusPath.subscribe(paths => this.collection = paths);
+    this.parameters.currentOptions.subscribe(options => this.options = options);
     this.matches.currentWordlist.subscribe((items) => {
       this.wordList.data = items;
       this.paginator.pageIndex = 0;
@@ -72,10 +73,17 @@ export class WordFreqDist {
                   '--color', 'ansi', '--colors', 'path:none', '--colors',
                   'line:none', '--colors', 'match:none', '-o', '-w', '\\w+'];
 
-  constructor(paths: string[]) {
+  constructor(paths: string[], options: RGOptions) {
     this.cp = (<any>window).require('child_process');
     this.decoder = new StringDecoder('utf-8');
     this.paths = paths;
+    const { includeGlob, excludeGlob } = options;
+    if (includeGlob.length > 1) {
+      this.args.push('--glob'); this.args.push(includeGlob);
+    }
+    if (excludeGlob.length > 1) {
+      this.args.push('--glob'); this.args.push('!' + excludeGlob);
+    }
   }
 
   compileList(service: MatchesService): void {

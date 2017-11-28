@@ -8,27 +8,18 @@ var path = require('path')
 // be closed automatically when the JavaScript object is garbage collected.
 var mainWindow = null;
 
-// Quit when all windows are closed.
-app.on('window-all-closed', function () {
-    // On OS X it is common for applications and their menu bar
-    // to stay active until the user quits explicitly with Cmd + Q
-    if (process.platform != 'darwin') {
-        app.quit();
-    }
-});
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-app.on('ready', function () {
+function createWindow () {
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 900,
+        width: 1100,
         height: 800,
         minWidth: 840,
         minHeight: 648,
         acceptFirstMouse: true,
         titleBarStyle: 'hidden',
         frame: false,
+        show: false,
         backgroundColor: '#fff',
         icon: __dirname +  '/src/assets/icons/mac/manseeks-icon.png.icns'
     });
@@ -38,9 +29,9 @@ app.on('ready', function () {
     mainWindow.loadURL('file://' + path.join(__dirname, '/dist/index.html'));
     // mainWindow.loadURL('http://localhost:4200')
     
-
-    // Open the DevTools.
-    // mainWindow.openDevTools();
+    mainWindow.once('ready-to-show', () => {
+        mainWindow.show()
+    })
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
@@ -51,4 +42,23 @@ app.on('ready', function () {
     });
 
     require('./menu/mainmenu');
+}
+
+app.on('ready', createWindow)
+
+// Quit when all windows are closed.
+app.on('window-all-closed', function () {
+    // On OS X it is common for applications and their menu bar
+    // to stay active until the user quits explicitly with Cmd + Q
+    if (process.platform != 'darwin') {
+        app.quit();
+    }
 });
+
+app.on('activate', function () {
+    // On OS X it's common to re-create a window in the app when the
+    // dock icon is clicked and there are no other windows open.
+    if (mainWindow === null) {
+        createWindow()
+    }
+})

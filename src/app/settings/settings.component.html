@@ -7,6 +7,12 @@
     <div class="slider-info">Number of context characters:</div>
     <mat-slider [(ngModel)]="rgOptions.context" [max]="max" [min]="min" [step]="step" [thumb-label]="thumbLabel" [value]="rgOptions.context" (change)="updateRGOptions()">
     </mat-slider>
+    <mat-form-field class="field-margin" (change)="updateRGOptions()">
+      <input matInput placeholder="files to include" value="rgOptions.includeGlob" [(ngModel)]="rgOptions.includeGlob">
+    </mat-form-field>
+    <mat-form-field class="field-margin" (change)="updateRGOptions()">
+      <input matInput placeholder="files to exclude" value="rgOptions.excludeGlob" [(ngModel)]="rgOptions.excludeGlob">
+    </mat-form-field>    
   </mat-card-content>
 </mat-card>
 
