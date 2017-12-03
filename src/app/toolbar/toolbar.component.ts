@@ -20,6 +20,7 @@ export class ToolbarComponent implements OnInit {
   corpuspath: string[];
   results: LineMatch[];
   wordlist: Word[];
+  filteredWords: Word[];
   concordanceHeader = ['origin', 'lineNumber', 'lhs', 'match', 'rhs'];
   wordlistHeader = ['word', 'frequency'];
   exportOptions: ExportOptions;
@@ -46,9 +47,15 @@ export class ToolbarComponent implements OnInit {
           del: this.exportOptions.fieldSeparator
         });
       } else if (this.tabIndex === 1) {
+        let data: Word[];
+        if (this.filteredWords.length > 0) {
+          data = this.filteredWords;
+        } else {
+          data = this.wordlist;
+        }
         csvtable = CSV(
           {
-            data: this.wordlist,
+            data: data,
             fields: this.wordlistHeader,
             quotes: this.exportOptions.quoteStrings,
             hasCSVColumnTitle: this.exportOptions.showLabels,
@@ -75,6 +82,7 @@ export class ToolbarComponent implements OnInit {
     this.parameters.currentExport.subscribe(options => this.exportOptions = options);
     this.table.currentMatches.subscribe(results => this.results = results);
     this.table.currentWordlist.subscribe(words => this.wordlist = words);
+    this.table.currentFilteredWordList.subscribe(words => this.filteredWords = words);
   }
 
 }

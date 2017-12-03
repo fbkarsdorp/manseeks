@@ -38,6 +38,7 @@ export class WordlistComponent implements AfterViewInit {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.wordList.filter = filterValue;
+    this.matches.filteredWordlist.next(this.wordList.filteredData);
   }
 
   compileWordList() {

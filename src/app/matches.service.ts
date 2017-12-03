@@ -14,6 +14,9 @@ export class MatchesService {
   wordlist = new BehaviorSubject<Word[]>([]);
   currentWordlist = this.wordlist.asObservable();
 
+  filteredWordlist = new BehaviorSubject<Word[]>([]);
+  currentFilteredWordList = this.filteredWordlist.asObservable();
+
   constructor() { }
 
   updateMatches(matches: LineMatch[]) {
