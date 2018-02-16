@@ -163,8 +163,8 @@ export class RipGrepEngine {
       const offset = matchIndices[i][0];
       const length = matchIndices[i][1];
       const match: string = preview.slice(offset, offset + length);
-      const lhs: string = preview.slice(offset - this.contextWidth, offset);
-      const rhs: string = preview.slice(offset + length, offset + length + this.contextWidth);
+      const lhs: string = preview.slice(Math.max(offset - this.contextWidth, 0), offset);
+      const rhs: string = preview.slice(offset + length, Math.min(offset + length + this.contextWidth, preview.length));
       this.matchList.push(new LineMatch(origin, lineNum, lhs, match, rhs));
     }
   }

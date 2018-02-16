@@ -25,6 +25,7 @@ export class SettingsComponent implements OnInit {
   };
 
   constructor(private parameters: ParametersService) {
+    this.parameters.updateOptions(this.rgOptions);
   }
 
   ngOnInit() {
